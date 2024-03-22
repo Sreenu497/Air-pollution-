@@ -1,0 +1,53 @@
+smart garage door system using IoT:
+import time
+
+class SmartGarageDoor:
+    def __init__(self):
+        self.is_open = False
+
+    def open_door(self):
+        if not self.is_open:
+            print("Opening the garage door")
+            self.is_open = True
+        else:
+            print("The garage door is already open")
+
+    def close_door(self):
+        if self.is_open:
+            print("Closing the garage door")
+            self.is_open = False
+        else:
+            print("The garage door is already closed")
+
+class VoiceControl:
+    def __init__(self, garage_door):
+        self.garage_door = garage_door
+
+    def recognize_command(self, command):
+        if "open" in command:
+            self.garage_door.open_door()
+        elif "close" in command:
+            self.garage_door.close_door()
+        else:
+            print("Command not recognized")
+
+class SmartNotifications:
+    def __init__(self, garage_door):
+        self.garage_door = garage_door
+
+    def send_notification(self, message):
+        print("Notification:", message)
+
+if __name__ == "__main__":
+    garage_door = SmartGarageDoor()
+    voice_control = VoiceControl(garage_door)
+    notifications = SmartNotifications(garage_door)
+
+    # Simulate commands
+    voice_control.recognize_command("open the garage door")
+    time.sleep(2)
+    voice_control.recognize_command("close the garage door")
+
+    # Simulate smart notifications
+    notifications.send_notification("Garage door opened at 3:00 PM")
+    notifications.send_notification("Garage door closed at 4:00 PM")
