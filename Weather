@@ -1,0 +1,41 @@
+import random
+import time
+
+class WeatherSensor:
+    def __init__(self, location):
+        self.location = location
+
+    def measure_temperature(self):
+        return round(random.uniform(-20, 40), 2)
+
+    def measure_humidity(self):
+        return round(random.uniform(0, 100), 2)
+
+    def measure_rainfall(self):
+        return round(random.uniform(0, 20), 2)
+
+class WeatherReportingSystem:
+    def __init__(self, sensor):
+        self.sensor = sensor
+
+    def report_weather(self):
+        temperature = self.sensor.measure_temperature()
+        humidity = self.sensor.measure_humidity()
+        rainfall = self.sensor.measure_rainfall()
+
+        print(f"Location: {self.sensor.location}")
+        print(f"Temperature: {temperature}°C")
+        print(f"Humidity: {humidity}%")
+        print(f"Rainfall: {rainfall}mm")
+
+if __name__ == "__main__":
+    # Create a weather sensor for a specific location
+    sensor = WeatherSensor("City A")
+
+    # Create a weather reporting system
+    weather_system = WeatherReportingSystem(sensor)
+
+    # Continuously report weather every 10 seconds
+    while True:
+        weather_system.report_weather()
+        time.sleep(10)
