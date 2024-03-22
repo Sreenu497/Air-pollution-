@@ -1,0 +1,28 @@
+import random
+import time
+
+class BaggageTracker:
+    def __init__(self):
+        self.latitude = 0
+        self.longitude = 0
+
+    def track_baggage(self):
+        # Simulate tracking the baggage
+        self.latitude = round(random.uniform(-90, 90), 6)
+        self.longitude = round(random.uniform(-180, 180), 6)
+
+        print(f"Baggage Location: Latitude {self.latitude}, Longitude {self.longitude}")
+
+class SmartNotification:
+    def send_notification(self, message):
+        print("Notification:", message)
+
+if __name__ == "__main__":
+    tracker = BaggageTracker()
+    notification = SmartNotification()
+
+    # Simulate continuous tracking
+    while True:
+        tracker.track_baggage()
+        notification.send_notification(f"Your baggage is currently at Latitude {tracker.latitude}, Longitude {tracker.longitude}")
+        time.sleep(10)  # Track every 10 seconds
