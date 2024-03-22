@@ -1,0 +1,48 @@
+import time
+
+class SmartCradle:
+    def __init__(self):
+        self.is_crying = False
+        self.temperature = 0
+        self.humidity = 0
+
+    def detect_crying(self):
+        # Simulate crying detection
+        if self.temperature > 25 or self.humidity > 60:
+            self.is_crying = True
+        else:
+            self.is_crying = False
+
+    def measure_temperature(self):
+        # Simulate temperature measurement
+        self.temperature = 25 + (0.5 * time.time() % 10)  # Randomly fluctuate temperature
+
+    def measure_humidity(self):
+        # Simulate humidity measurement
+        self.humidity = 50 + (0.3 * time.time() % 20)  # Randomly fluctuate humidity
+
+class SmartCradleSystem:
+    def __init__(self, cradle):
+        self.cradle = cradle
+
+    def monitor_cradle(self):
+        # Simulate monitoring the cradle
+        self.cradle.measure_temperature()
+        self.cradle.measure_humidity()
+        self.cradle.detect_crying()
+
+        print("Temperature:", self.cradle.temperature)
+        print("Humidity:", self.cradle.humidity)
+        if self.cradle.is_crying:
+            print("Baby is crying!")
+        else:
+            print("Baby is calm.")
+
+if __name__ == "__main__":
+    cradle = SmartCradle()
+    cradle_system = SmartCradleSystem(cradle)
+
+    # Simulate continuous monitoring
+    while True:
+        cradle_system.monitor_cradle()
+        time.sleep(5)  # Monitor every 5 seconds
