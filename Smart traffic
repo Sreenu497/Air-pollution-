@@ -1,0 +1,47 @@
+import time
+
+class TrafficSensor:
+    def __init__(self, location):
+        self.location = location
+
+    def detect_traffic(self):
+        # Simulate traffic detection
+        return "High" if time.time() % 10 < 5 else "Low"
+
+class EmergencyVehicle:
+    def __init__(self):
+        self.is_active = False
+
+    def activate(self):
+        self.is_active = True
+
+    def deactivate(self):
+        self.is_active = False
+
+class TrafficManagementSystem:
+    def __init__(self, sensor, emergency_vehicle):
+        self.sensor = sensor
+        self.emergency_vehicle = emergency_vehicle
+
+    def manage_traffic(self):
+        traffic_level = self.sensor.detect_traffic()
+
+        if traffic_level == "High":
+            print("Traffic is high. Implementing dynamic traffic control measures.")
+            # Implement dynamic traffic control measures
+        else:
+            print("Traffic is low. No intervention required.")
+
+        if self.emergency_vehicle.is_active:
+            print("Emergency vehicle is active. Clearing the way.")
+            # Clear the way for emergency vehicles
+
+if __name__ == "__main__":
+    sensor = TrafficSensor("Intersection A")
+    emergency_vehicle = EmergencyVehicle()
+    traffic_system = TrafficManagementSystem(sensor, emergency_vehicle)
+
+    # Simulate continuous monitoring
+    while True:
+        traffic_system.manage_traffic()
+        time.sleep(5)  # Monitor every 5 seconds
